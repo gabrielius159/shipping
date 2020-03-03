@@ -13,8 +13,14 @@ class OrderTest extends TestCase
      */
     public function shouldHaveUpsAsDefaultShipping()
     {
-        $order = new Order();
+        $order = new Order(
+            'ID001',
+            'Street',
+            'PC54784',
+            'Vilnius',
+            'Lithuania'
+        );
 
-        $this->assertEquals('ups', $order->getShipping());
+        $this->assertEquals(Order::SHIPPING_PROVIDER_UPS, $order->getShipping());
     }
 }
