@@ -43,7 +43,7 @@ class DHLService extends AbstractShippingProvider implements ShippingProviderInt
      *
      * @throws \Exception
      */
-    public function generateRequestParameters(Order $order): array
+    protected function generateRequestParameters(Order $order): array
     {
         try {
             $this->assertOrderIsReadyForRegistration($this->isOrderReadyForRegistration($order));

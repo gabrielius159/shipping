@@ -3,11 +3,18 @@
 namespace App\Service\ShippingProvider;
 
 use App\Entity\Order;
+use GuzzleHttp\Client;
+use Psr\Log\LoggerAwareInterface;
 
 class OmnivaService extends AbstractShippingProvider implements ShippingProviderInterface
 {
     const SHIPPING_PROVIDER_PICKUP_URL = 'http://localhost:8000/omnivafake.com/pickup/find';
     const SHIPPING_PROVIDER_OMNIVA_URL = 'http://localhost:8000/omnivafake.com/register';
+
+    public function __construct(Client $client, LoggerAwareInterface $loggerAware)
+    {
+        parent::__construct($client, $loggerAware);
+    }
 
     /**
      * @param Order $order
@@ -45,7 +52,7 @@ class OmnivaService extends AbstractShippingProvider implements ShippingProvider
      *
      * @throws \Exception
      */
-    public function generateRequestParameters(Order $order): array
+    protected function generateRequestParameters(Order $order): array
     {
         try {
             $this->assertOrderIsReadyForRegistration($this->isOrderReadyForRegistration($order, [], false));
@@ -107,7 +114,7 @@ class OmnivaService extends AbstractShippingProvider implements ShippingProvider
      *
      * @throws \Exception
      */
-    private function getPickupPointForOrder(Order $order): ?int
+    protected function getPickupPointForOrder(Order $order): ?int
     {
         $url = self::SHIPPING_PROVIDER_PICKUP_URL . '?country='.$order->getCountry().'&postCode='.$order->getPostCode();
 

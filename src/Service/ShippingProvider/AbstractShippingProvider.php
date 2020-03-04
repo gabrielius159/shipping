@@ -26,11 +26,25 @@ abstract class AbstractShippingProvider
         $this->logger = $loggerAware;
     }
 
+    /**
+     * @param Order $order
+     * @param array $specificParams
+     * @param bool  $checkSpecificParams
+     *
+     * @return bool
+     */
     abstract protected function isOrderReadyForRegistration(
         Order $order,
         array $specificParams = [],
         bool $checkSpecificParams = true
     ): bool;
+
+    /**
+     * @param Order $order
+     *
+     * @return array
+     */
+    abstract protected function generateRequestParameters(Order $order): array;
 
     /**
      * @param Response $response

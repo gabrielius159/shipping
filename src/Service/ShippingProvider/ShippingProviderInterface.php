@@ -6,12 +6,10 @@ use App\Entity\Order;
 
 interface ShippingProviderInterface
 {
-    public function makeRequest(Order $order);
-
-    /*
-     * @todo move function to AbstractShippingProvider
+    /**
+     * @param Order $order
      *
-     * my bad, I need to move this function to AbstractShippingProvider to make it protected and abstract.
+     * @return array
      */
-    public function generateRequestParameters(Order $order): array; 
+    public function makeRequest(Order $order): array;
 }

@@ -43,28 +43,6 @@ class OmnivaServiceTest extends TestCase
         $this->assertArrayHasKey('success', $response);
     }
 
-
-    /**
-     * @test
-     *
-     * @throws \Exception
-     */
-    public function shouldGenerateRequestParameters()
-    {
-        $order = new Order(
-            'ID001',
-            'Street',
-            'PC54784',
-            'Vilnius',
-            'Lithuania'
-        );
-
-        $generatedParameters = $this->omnivaService->generateRequestParameters($order);
-
-        $this->assertIsArray($generatedParameters);
-        $this->assertArrayHasKey('pickup_point_id', $generatedParameters);
-    }
-
     public function tearDown(): void
     {
         $this->client = null;

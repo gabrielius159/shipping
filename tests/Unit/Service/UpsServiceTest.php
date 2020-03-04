@@ -26,24 +26,6 @@ class UpsServiceTest
     /**
      * @test
      */
-    public function shouldHaveOrderIdKey()
-    {
-        $order = new Order(
-            'ID001',
-            'Street',
-            'PC54784',
-            'Vilnius',
-            'Lithuania'
-        );
-
-        $requestParameters = $this->upsService->generateRequestParameters($order);
-
-        $this->assertArrayHasKey('order_id', $requestParameters);
-    }
-
-    /**
-     * @test
-     */
     public function shouldReturnArrayWithSuccessKey()
     {
         $order = new Order(

@@ -27,24 +27,6 @@ class DHLServiceTest extends TestCase
     /**
      * @test
      */
-    public function shouldHaveOrderIdKey()
-    {
-        $order = new Order(
-            'ID001',
-            'Street',
-            'PC54784',
-            'Vilnius',
-            'Lithuania'
-        );
-
-        $requestParameters = $this->dhlService->generateRequestParameters($order);
-
-        $this->assertArrayHasKey('order_id', $requestParameters);
-    }
-
-    /**
-     * @test
-     */
     public function shouldReturnArrayWithSuccessKey()
     {
         $order = new Order(
